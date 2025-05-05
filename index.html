@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devendra Negi - UI Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --light-text: #6b7280;
+            --background: #f3f4f6;
+            --white: #ffffff;
+            --dark-bg: #111827;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hero {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 10rem 0 5rem;
+            margin-top: 5rem;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            color: #f3f4f6;
+            font-weight: 700;
+        }
+        
+        .contact-info {
+            display: flex;
+            margin-top: 2rem;
+        }
+        
+        .contact-info div {
+            margin-right: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 0.5rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .skill-category h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-item {
+            background-color: var(--background);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--white);
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--white);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--white);
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--white);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--white) transparent transparent;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .experience-content {
+            padding: 20px 30px;
+            background-color: var(--white);
+            position: relative;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .experience-date {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .experience-company {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        
+        .experience-project {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-description {
+            margin-top: 1rem;
+        }
+        
+        .experience-description li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-tech {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--light-text);
+        }
+        
+        .education {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .education-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .education-table th,
+        .education-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--background);
+        }
+        
+        .education-table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero {
+                padding: 8rem 0 3rem;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-info div {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--white) transparent transparent;
+            }
+            
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">DN</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Devendra Negi</h1>
+                    <p>Seasoned <span class="highlight">UI Architect</span> with 16+ years of experience delivering enterprise-grade web applications. Specializing in <span class="highlight">large-scale e-commerce platforms</span>, <span class="highlight">web performance optimization</span>, <span class="highlight">accessibility</span>, and <span class="highlight">web security</span>.</p>
+                    
+                    <div class="contact-info">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>devnegikec@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <span>+91-9711452879</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Proficiencies</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">React</div>
+                        <div class="skill-item">Redux</div>
+                        <div class="skill-item">Ethers.js</div>
+                        <div class="skill-item">Web3.js</div>
+                        <div class="skill-item">NodeJS</div>
+                        <div class="skill-item">TypeScript</div>
+                        <div class="skill-item">Angular</div>
+                        <div class="skill-item">Micro Frontend</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Performance & Security</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Lighthouse</div>
+                        <div class="skill-item">Web Vitals</div>
+                        <div class="skill-item">Content Security Policies (CSP)</div>
+                        <div class="skill-item">OWASP practices</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Build Tools</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Webpack</div>
+                        <div class="skill-item">Nrwl Monorepo</div>
+                        <div class="skill-item">Module Federation</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Testing</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Jest</div>
+                        <div class="skill-item">Playwright Automation Testing</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Applications & Tools</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Git</div>
+                        <div class="skill-item">AWS</div>
+                        <div class="skill-item">Medusa</div>
+                        <div class="skill-item">Splunk</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Project Management</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Service Now</div>
+                        <div class="skill-item">Jira</div>
+                        <div class="skill-item">Confluence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="experience-content">
+                        <div class="experience-date">Feb 2024 – May 2025</div>
+                        <h3 class="experience-company">Polytrade Finance</h3>
+                        <div class="experience-project">Project: RWA Trading Dashboard</div>
+                        <ul class="experience-description">
+                            <li>Integrated smart contracts with frontend React apps to enable wrapping, listing, buying, ownership transfers, and royalty distributions.</li>
+                            <li>Implemented decentralized finance functionalities including staking, lending, liquidity pooling, and NFT marketplace.</li>
+                            <li>Collaborated closely with blockchain engineers to optimize user flows and enhance smart contract UI interactions.</li>
+                        </ul>
+                        <div class="experience-tech">Technologies: React, Redux, NextJS, RTK Query, TypeScript</div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="experience-content">
+                        <div class="experience-date">Jan 2023 – Jan 2024</div>
+                        <h3 class="experience-company">Digital.AI</h3>
+                        <div class="experience-project">Project: Analytics and Intelligence Dashboard</div>
+                        <ul class="experience-description">
+                            <li>Designed and implemented module federation for scalable and reusable micro frontends.</li>
+                            <li>Defined the UI architecture to ensure performance, scalability, and maintainability.</li>
+                            <li>Established UI guidelines and standards for the engineering team.</li>
+                        </ul>
+                        <div class="experience-tech">Technologies: React, Redux, RTK Query, Nrwl Monorepo, TypeScript</div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="experience-content">
+                        <div class="experience-date">Mar 2021 – Mar 2022</div>
+                        <h3 class="experience-company">Informatica</h3>
+                        <div class="experience-project">Project: Informatica IICS Platform</div>
+                        <ul class="experience-description">
+                            <li>Delivered end-to-end frontend solutions, balancing legacy and modern codebases.</li>
+                            <li>Improved platform performance and resolved critical customer issues.</li>
+                            <li>Collaborated with leadership to define roadmaps and manage a high-performing team.</li>
+                        </ul>
+                        <div class="experience-tech">Technologies: React, Redux, NodeJS, Webpack</div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="experience-content">
+                        <div class="experience-date">Feb 2020 – Nov 2020</div>
+                        <h3 class="experience-company">Cisco Systems</h3>
+                        <div class="experience-project">Project: Rainier IoT Platform</div>
+                        <ul class="experience-description">
+                            <li>Delivered the front end for a secure and scalable IoT platform with 80% test coverage.</li>
+                            <li>Managed CI/CD pipelines and ensured robust deployment processes.</li>
+                        </ul>
+                        <div class="experience-tech">Technologies: React, Redux, NodeJS, Webpack</div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="experience-content">
+                        <div class="experience-date">Apr 2018 – Feb 2020</div>
+                        <h3 class="experience-company">Walmart Labs</h3>
+                        <div class="experience-project">Project: Walmart.com (Search, Item, and Category Pages)</div>
+                        <ul class="experience-description">
+                            <li>Led a discovery team of 10 engineers, delivering features across multiple verticals.</li>
+                            <li>Ensured site speed optimization, high accessibility standards, and seamless user experiences.</li>
+                            <li>Drove micro frontend adoption, improving modularity and team productivity.</li>
+                        </ul>
+                        <div class="experience-tech">Technologies: React, Redux, Electrode Framework</div>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="experience-content">
+                        <div class="experience-date">Jan 2017 – Apr 2018</div>
+                        <h3 class="experience-company">Wipro Digital</h3>
+                        <div class="experience-project">Project: IoT Dashboard (Looking Glass)</div>
+                        <ul class="experience-description">
+                            <li>Architected an Angular-based IoT dashboard for real-time data tracking and analysis.</li>
+                            <li>Delivered a high-performance, interactive UI from scratch.</li>
+                        </ul>
+                        <div class="experience-tech">Technologies: Angular, NodeJS, D3.js</div>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="experience-content">
+                        <div class="experience-date">Apr 2015 – Jan 2017</div>
+                        <h3 class="experience-company">Saxo Bank</h3>
+                        <div class="experience-project">Project: SaxoTraderGo</div>
+                        <ul class="experience-description">
+                            <li>Migrated the trading platform from Spine.js to React, enhancing performance and usability.</li>
+                            <li>Integrated an in-house charting library with trading features for desktop and mobile.</li>
+                        </ul>
+                        <div class="experience-tech">Technologies: React, Redux</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education">
+                <table class="education-table">
+                    <thead>
+                        <tr>
+                            <th>Degree</th>
+                            <th>Specialization</th>
+                            <th>College</th>
+                            <th>University</th>
+                            <th>Year</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>B.E.</td>
+                            <td>ECE</td>
+                            <td>KEC Dwarahat</td>
+                            <td>Kumaun University</td>
+                            <td>2003</td>
+                            <td>64%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h2>Get In Touch</h2>
+                <div class="contact-info">
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <span>devnegikec@gmail.com</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <span>+91-9711452879</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="copyright">
+                    © 2025 Devendra Negi. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
